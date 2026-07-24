@@ -52,9 +52,9 @@ const Hero = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         >
-          <motion.div style={{ y: y1 }} className="glass-panel image-glass-wrapper">
+          <div className="glass-panel image-glass-wrapper">
             <img src="/profile.jpg" alt="Tarun Baranwal" className="hero-portrait" />
-          </motion.div>
+          </div>
         </motion.div>
 
       </div>

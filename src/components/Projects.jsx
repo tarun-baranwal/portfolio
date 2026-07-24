@@ -59,8 +59,8 @@ const Projects = () => {
 
       <div className="projects-glass-grid">
         {projects.map((project, idx) => (
-          <motion.div
-            key={idx}
+          <motion.div 
+            key={idx} 
             className={`glass-panel project-glass-card ${project.featured ? 'glass-featured' : 'glass-standard'}`}
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -69,9 +69,9 @@ const Projects = () => {
           >
             <div className="project-glass-image-wrapper">
               {project.featured ? (
-                <motion.img style={{ y: y1 }} src={project.image} alt={project.title} className="project-glass-image" />
+                 <motion.img style={{ y: y1 }} src={project.image} alt={project.title} className="project-glass-image" />
               ) : (
-                <img src={project.image} alt={project.title} className="project-glass-image" />
+                 <img src={project.image} alt={project.title} className="project-glass-image" />
               )}
               <div className="project-glass-overlay">
                 <div className="project-glass-links">
@@ -88,7 +88,7 @@ const Projects = () => {
                 </div>
               </div>
             </div>
-
+            
             <div className="project-glass-content">
               <h3 className="project-glass-title">{project.title}</h3>
               <p className="project-glass-desc">{project.desc}</p>
