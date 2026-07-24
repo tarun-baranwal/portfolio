@@ -1,0 +1,106 @@
+.about-glass-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.bio-glass-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bio-glass-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+
+.bio-glass-text {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.bio-glass-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bio-glass-list li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.skills-glass-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.skill-glass-box {
+  padding: 1.5rem 2rem;
+}
+
+.skill-glass-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.skill-icon-wrap {
+  width: 45px;
+  height: 45px;
+  background: var(--bg-primary);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-blush);
+  box-shadow: inset 2px 2px 5px #e0e5ec, inset -2px -2px 5px #ffffff;
+}
+
+.skill-glass-box h4 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.skill-glass-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.glass-tag {
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.02);
+  transition: all 0.2s ease;
+}
+
+.glass-tag:hover {
+  background: #fff;
+  color: var(--accent-blush);
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.05);
+}
+
+@media (max-width: 1024px) {
+  .about-glass-grid {
+    grid-template-columns: 1fr;
+  }
+}
