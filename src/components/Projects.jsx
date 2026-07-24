@@ -39,6 +39,15 @@ const Projects = () => {
       github: '#',
       image: expediaImg,
       featured: false
+    },
+    {
+      title: 'Personal Portfolio',
+      desc: 'A premium, modern portfolio website featuring a light ambient glassmorphic aesthetic. Built with fluid scroll animations, glowing neo-morphic elements, and highly responsive structural layouts.',
+      tech: ['React', 'Framer Motion', 'Vite', 'CSS'],
+      live: 'https://tarunbaranwal.vercel.app/',
+      github: 'https://github.com/tarun-baranwal/portfolio',
+      image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80',
+      featured: false
     }
   ];
 
