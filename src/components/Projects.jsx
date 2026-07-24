@@ -3,6 +3,11 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { FiExternalLink, FiGithub } from 'react-icons/fi';
 import './Projects.css';
 
+// Import images so Vite bundles them properly for production
+import sentboxImg from '../assets/image.png';
+import silentseaImg from '../assets/image2.png';
+import expediaImg from '../assets/image3.png';
+
 const Projects = () => {
   const { scrollYProgress } = useScroll();
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
@@ -14,7 +19,7 @@ const Projects = () => {
       tech: ['JavaScript', 'TypeScript', 'CSS', 'MySQL'],
       live: 'https://sb-rbnd.vercel.app/',
       github: '#',
-      image: '/src/assets/image.png',
+      image: sentboxImg,
       featured: true
     },
     {
@@ -23,7 +28,7 @@ const Projects = () => {
       tech: ['HTML', 'CSS', 'JavaScript'],
       live: 'https://tarun-baranwal.github.io/wellness/',
       github: '#',
-      image: '/src/assets/image2.png',
+      image: silentseaImg,
       featured: false
     },
     {
@@ -32,7 +37,7 @@ const Projects = () => {
       tech: ['HTML', 'CSS'],
       live: 'https://tarun-baranwal.github.io/Expidiaclone/',
       github: '#',
-      image: '/src/assets/image3.png',
+      image: expediaImg,
       featured: false
     }
   ];
