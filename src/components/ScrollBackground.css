@@ -1,0 +1,33 @@
+.scroll-bg-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2; /* Stay behind absolutely everything */
+  overflow: hidden;
+  pointer-events: none; /* Let clicks pass through to the real website */
+  background-color: var(--bg-primary);
+}
+
+.anime-shape {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background-color: rgba(255, 222, 222, 0.4); /* Default starting color */
+  border-radius: 50%;
+  filter: blur(15px);
+  opacity: 0.2;
+  will-change: transform, opacity, background-color, border-radius;
+}
+
+/* Add a massive blur overlay to make the shapes look ambient and glassmorphic */
+.bg-blur-overlay {
+  position: absolute;
+  inset: -10%;
+  width: 120%;
+  height: 120%;
+  backdrop-filter: blur(80px);
+  -webkit-backdrop-filter: blur(80px);
+  z-index: -1;
+}
