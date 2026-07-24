@@ -82,7 +82,7 @@ const Projects = () => {
       title: 'Sentbox',
       desc: 'A powerful, full-stack Centralized Email Campaign Automation platform. Serves as a unified dashboard to manage and execute email campaigns across 25+ different free-tier email providers from a single interface.',
       tech: ['JavaScript', 'TypeScript', 'CSS', 'MySQL'],
-      live: 'https://sb-rbnd.vercel.app/',
+      live: 'https://sentbox.vercel.app/',
       github: '#',
       image: sentboxImg,
       featured: true
