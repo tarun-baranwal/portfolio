@@ -4,9 +4,11 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -2; /* Stay behind absolutely everything */
+  z-index: -2;
+  /* Stay behind absolutely everything */
   overflow: hidden;
-  pointer-events: none; /* Let clicks pass through to the real website */
+  pointer-events: none;
+  /* Let clicks pass through to the real website */
   background-color: var(--bg-primary);
 }
 
@@ -14,7 +16,8 @@
   position: absolute;
   width: 150px;
   height: 150px;
-  background-color: rgba(255, 222, 222, 0.4); /* Default starting color */
+  background-color: rgba(255, 222, 222, 0.4);
+  /* Default starting color */
   border-radius: 50%;
   filter: blur(15px);
   opacity: 0.2;

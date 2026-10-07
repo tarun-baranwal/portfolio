@@ -1,0 +1,56 @@
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-primary);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.8s ease-in-out, visibility 0.8s;
+}
+
+.preloader.loaded {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.preloader-content {
+  text-align: center;
+}
+
+.load-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.5rem;
+  color: var(--text-primary);
+  display: flex;
+  gap: 5px;
+}
+
+.load-text span {
+  display: inline-block;
+  animation: bounce 1.5s infinite;
+}
+
+.load-text span:nth-child(1) { animation-delay: 0.1s; }
+.load-text span:nth-child(2) { animation-delay: 0.2s; }
+.load-text span:nth-child(3) { animation-delay: 0.3s; }
+.load-text span:nth-child(4) { animation-delay: 0.4s; }
+.load-text span:nth-child(5) { animation-delay: 0.5s; }
+.load-text span:nth-child(6) { animation-delay: 0.6s; }
+.load-text span:nth-child(7) { animation-delay: 0.7s; }
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+    color: var(--text-primary);
+  }
+  50% {
+    transform: translateY(-20px);
+    color: var(--accent-primary);
+  }
+}

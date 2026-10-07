@@ -1,69 +1,168 @@
-.experience-glass-grid {
+.experience-section {
+  padding: 130px 0;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  position: relative;
+}
+
+/* Timeline Cards Container */
+.experience-timeline-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
+  margin-top: 3.5rem;
+  margin-bottom: 3rem;
 }
 
-.exp-glass-box {
+.timeline-card {
+  background: rgba(12, 33, 39, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 2.5rem;
+  border-radius: 24px;
+  border: 1px solid rgba(191, 222, 224, 0.18);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 320px;
 }
 
-.exp-glass-top {
+.timeline-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(240, 179, 35, 0.45);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(44, 145, 153, 0.25);
+}
+
+.timeline-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 2.5rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-.exp-glass-icon {
-  width: 65px;
-  height: 65px;
-  background: var(--bg-primary);
-  color: var(--accent-blush);
-  border-radius: 50%;
+.timeline-icon-box {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  background: rgba(240, 179, 35, 0.12);
+  border: 1px solid rgba(240, 179, 35, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--neu-shadow);
+  color: var(--accent-primary);
+  box-shadow: 0 0 20px rgba(240, 179, 35, 0.15);
 }
 
-.exp-glass-date {
+.timeline-badge-group {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.5);
-  padding: 0.6rem 1.2rem;
-  border-radius: 9999px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  gap: 0.8rem;
 }
 
-.exp-glass-title {
-  font-size: 1.8rem;
+.timeline-period {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
   font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 0.5rem;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 0.35rem 0.9rem;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.exp-glass-org {
-  font-size: 1.15rem;
+.timeline-role {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.4rem;
+}
+
+.timeline-org {
+  font-size: 1.05rem;
   font-weight: 600;
-  margin-bottom: 1.5rem;
+  color: var(--accent-primary);
+  margin-bottom: 1.2rem;
 }
 
-.exp-glass-desc {
-  font-size: 1.1rem;
-  color: var(--text-secondary);
-  line-height: 1.7;
+.timeline-desc {
+  color: #9bb7bb;
+  font-size: 1.02rem;
+  line-height: 1.65;
+  margin-bottom: 2rem;
+  flex-grow: 1;
 }
 
-@media (max-width: 968px) {
-  .experience-glass-grid {
+.timeline-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.timeline-skill-pill {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: rgba(44, 145, 153, 0.2);
+  padding: 0.4rem 0.9rem;
+  border-radius: 50px;
+  border: 1px solid rgba(191, 222, 224, 0.2);
+}
+
+/* Services Subgrid */
+.services-subgrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.service-mini-card {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  background: rgba(6, 18, 21, 0.6);
+  padding: 1.8rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+}
+
+.service-mini-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(240, 179, 35, 0.35);
+}
+
+.service-mini-icon {
+  color: var(--accent-primary);
+  background: rgba(240, 179, 35, 0.1);
+  padding: 1rem;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-mini-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-top: 0.2rem;
+  margin-bottom: 0.4rem;
+}
+
+.service-mini-desc {
+  color: #9bb7bb;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .experience-timeline-container,
+  .services-subgrid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }

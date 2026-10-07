@@ -1,93 +1,120 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import './Navbar.css';
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const toggleMenu = () => setIsOpen(!isOpen);
+
+  const menuVariants = {
+    closed: {
+      opacity: 0,
+      x: "100%",
+      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
+    },
+    open: {
+      opacity: 1,
+      x: "0%",
+      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
+    }
+  };
+
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Experience', href: '#experience' },
+    { title: "Home", href: "#home" },
+    { title: "About", href: "#about" },
+    { title: "Projects", href: "#projects" },
+    { title: "Experience", href: "#experience" },
+    { title: "Contact", href: "#contact" }
   ];
 
   return (
-    <header className={`navbar ${isScrolled ? 'scrolled glass-panel-nav' : ''}`}>
-      <div className="nav-container">
-        <a href="#home" className="logo">
-          Tarun<span className="text-gradient-ambient">.</span>
-        </a>
+    <>
+      <header className={`navbar-minimal ${scrolled ? 'scrolled' : ''}`}>
+        {/* Top Scroll Progress Indicator */}
+        <motion.div className="scroll-progress-bar" style={{ scaleX }} />
 
-        {/* Desktop Nav */}
-        <nav className="desktop-nav">
-          <ul className="nav-links">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <a href={link.href} className="nav-link">{link.name}</a>
-              </li>
-            ))}
-          </ul>
-          <a href="#contact" className="neumorphic-btn" style={{ padding: '0.6rem 1.2rem', fontSize: '0.9rem' }}>
-            Let's Talk
+        <div className="navbar-container">
+          <a href="#home" className="logo">
+            <span className="logo-text">T.B.</span>
           </a>
-        </nav>
+          
+          <button className="menu-btn-toggle" onClick={toggleMenu} aria-label="Toggle menu">
+            <Menu size={32} />
+          </button>
+        </div>
+      </header>
 
-        {/* Mobile Toggle */}
-        <button 
-          className="mobile-toggle"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
       <AnimatePresence>
-        {isMobileMenuOpen && (
+        {isOpen && (
           <motion.div 
-            className="mobile-menu"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
+            className="offcanvas-menu"
+            initial="closed"
+            animate="open"
+            exit="closed"
+            variants={menuVariants}
           >
-            <ul className="mobile-nav-links">
-              {navLinks.map((link) => (
-                <li key={link.name}>
-                  <a 
-                    href={link.href} 
-                    className="mobile-nav-link"
-                    onClick={() => setIsMobileMenuOpen(false)}
+            <div className="offcanvas-header">
+              <button className="menu-close-btn" onClick={toggleMenu}>
+                <X size={36} />
+              </button>
+            </div>
+            
+            <div className="offcanvas-content">
+              <div className="offcanvas-links">
+                {navLinks.map((link, i) => (
+                  <motion.a
+                    key={i}
+                    href={link.href}
+                    className="offcanvas-link"
+                    onClick={toggleMenu}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 + (i * 0.08), duration: 0.4 }}
                   >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-              <li>
-                <a 
-                  href="#contact" 
-                  className="neumorphic-btn"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Let's Talk
-                </a>
-              </li>
-            </ul>
+                    {link.title}
+                  </motion.a>
+                ))}
+              </div>
+              
+              <motion.div 
+                className="offcanvas-footer"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6, duration: 0.4 }}
+              >
+                <div className="contact-info">
+                  <h4>GET IN TOUCH</h4>
+                  <p>tarunbaranwal2020@gmail.com</p>
+                </div>
+                <div className="social-links">
+                  <a href="https://github.com/tarun-baranwal" target="_blank" rel="noreferrer">Github ↗</a>
+                  <a href="https://linkedin.com/in/tarun-baranwal-7524a9322" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+                  <a href="https://leetcode.com/u/tarun_baranwal" target="_blank" rel="noreferrer">LeetCode ↗</a>
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 };
 

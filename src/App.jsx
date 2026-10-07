@@ -5,13 +5,15 @@ import About from './components/About';
 import Projects from './components/Projects';
 import Experience from './components/Experience';
 import Footer from './components/Footer';
-import ScrollBackground from './components/ScrollBackground';
+import CustomCursor from './components/CustomCursor';
+import Preloader from './components/Preloader';
 import './App.css';
 
 function App() {
   return (
     <div className="app">
-      <ScrollBackground />
+      <Preloader />
+      <CustomCursor />
       <Navbar />
       <main>
         <Hero />
@@ -25,3 +27,4 @@ function App() {
 }
 
 export default App;
+

@@ -1,131 +1,123 @@
-import React, { useRef, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { FiExternalLink, FiGithub } from 'react-icons/fi';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Code, ExternalLink, ArrowUpRight } from 'lucide-react';
 import './Projects.css';
 
-import sentboxImg from '../assets/image.png';
-import silentseaImg from '../assets/image2.png';
-import expediaImg from '../assets/image3.png';
-import portfolioImg from '../assets/portfolio.png';
-
-const ProjectCard = ({ project, index }) => {
-  const cardRef = useRef(null);
-
-  const handleMouseMove = (e) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    // Set custom properties for CSS radial gradient
-    cardRef.current.style.setProperty('--mouse-x', `${x}px`);
-    cardRef.current.style.setProperty('--mouse-y', `${y}px`);
-  };
-
-  return (
-    <motion.div
-      ref={cardRef}
-      className={`bento-card glass-panel ${project.featured ? 'bento-featured' : 'bento-standard'}`}
-      onMouseMove={handleMouseMove}
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-    >
-      {/* Mouse Tracking Glow Element */}
-      <div className="bento-glow"></div>
-
-      <div className="bento-content-wrapper">
-        <div className="bento-text-area">
-          <h3 className="bento-title">{project.title}</h3>
-          <p className="bento-desc">{project.desc}</p>
-          <div className="bento-tech-tags">
-            {project.tech.map((tech, tIdx) => (
-              <span key={tIdx} className="bento-tag">{tech}</span>
-            ))}
-          </div>
-
-          <div className="bento-links">
-            {project.live && (
-              <a href={project.live} target="_blank" rel="noopener noreferrer" className="bento-link">
-                <FiExternalLink size={20} /> <span>Live Preview</span>
-              </a>
-            )}
-            {project.github !== '#' && (
-              <a href={project.github} target="_blank" rel="noopener noreferrer" className="bento-link">
-                <FiGithub size={20} /> <span>Repository</span>
-              </a>
-            )}
-          </div>
-        </div>
-
-        <div className="bento-image-area">
-          <div className="browser-mockup">
-            <div className="browser-header">
-              <span className="browser-dot red"></span>
-              <span className="browser-dot yellow"></span>
-              <span className="browser-dot green"></span>
-            </div>
-            <div className="browser-content">
-              <img src={project.image} alt={project.title} className="bento-img" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
 const Projects = () => {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
   const projects = [
     {
+      title: 'PADmarks',
+      category: 'OSINT Security Platform',
+      description: 'An evidence-backed Open Source Intelligence (OSINT) and digital footprint investigation platform for threat analysts.',
+      tech: ['Python', 'Flask', 'React', 'SQLite', 'OSINT'],
+      github: 'https://github.com/tarun-baranwal/padmarks',
+      live: 'https://padmark.vercel.app/',
+      image: '/assets/images/thumbs/padmark.png'
+    },
+    {
       title: 'Sentbox',
-      desc: 'A powerful, full-stack Centralized Email Campaign Automation platform. Serves as a unified dashboard to manage and execute email campaigns across 25+ different free-tier email providers from a single interface.',
-      tech: ['JavaScript', 'TypeScript', 'CSS', 'MySQL'],
+      category: 'Full Stack App',
+      description: 'A powerful Centralized Email Campaign Automation platform for 25+ providers.',
+      tech: ['JavaScript', 'MySQL', 'Node.js', 'React'],
+      github: 'https://github.com/tarun-baranwal',
       live: 'https://sentbox.vercel.app/',
-      github: '#',
-      image: sentboxImg,
-      featured: true
+      image: '/assets/images/thumbs/sentbox.png'
     },
     {
       title: 'Silent Sea',
-      desc: 'A student counselor web application designed to help individuals overcome stress anonymously.',
+      category: 'Web Platform',
+      description: 'A student counselor web application designed to help individuals overcome stress anonymously.',
       tech: ['HTML', 'CSS', 'JavaScript'],
-      live: 'https://tarun-baranwal.github.io/wellness/',
       github: 'https://github.com/tarun-baranwal/wellness',
-      image: silentseaImg,
-      featured: false
+      live: 'https://tarun-baranwal.github.io/wellness/',
+      image: '/assets/images/thumbs/image2.png'
+    },
+    {
+      title: 'Portfolio',
+      category: 'Creative Design',
+      description: 'A premium, modern portfolio built with fluid scroll animations.',
+      tech: ['React', 'Framer Motion', 'Vite'],
+      github: 'https://github.com/tarun-baranwal/portfolio',
+      live: 'https://tarunbaranwal.vercel.app/',
+      image: '/assets/images/thumbs/image.png'
     },
     {
       title: 'Expedia Clone',
-      desc: 'A front-end clone of the Expedia travel booking website, focusing on UI/UX structure.',
+      category: 'UI/UX Clone',
+      description: 'A front-end clone of the Expedia travel booking website focusing on structure.',
       tech: ['HTML', 'CSS'],
-      live: 'https://tarun-baranwal.github.io/Expidiaclone/',
       github: 'https://github.com/tarun-baranwal/Expidiaclone',
-      image: expediaImg,
-      featured: false
-    },
-    {
-      title: 'Personal Portfolio',
-      desc: 'A premium, modern portfolio built with fluid scroll animations and glowing neo-morphic elements.',
-      tech: ['React', 'Framer Motion', 'Vite', 'CSS'],
-      live: 'https://tarunbaranwal.vercel.app/',
-      github: 'https://github.com/tarun-baranwal/portfolio',
-      image: portfolioImg,
-      featured: false
+      live: 'https://tarun-baranwal.github.io/Expidiaclone/',
+      image: '/assets/images/thumbs/expdia.png'
     }
   ];
 
   return (
-    <section id="projects" className="section">
-      <div className="section-header">
-        <h2 className="section-title">Featured Work</h2>
-      </div>
+    <section id="projects" className="projects-section">
+      <div className="container">
+        <div className="section-header">
+          <motion.h2
+            className="section-title text-gradient"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            FEATURED <span className="serif-italic">WORKS</span>
+          </motion.h2>
+        </div>
 
-      <div className="neo-bento-grid">
-        {projects.map((project, idx) => (
-          <ProjectCard key={idx} project={project} index={idx} />
-        ))}
+        <div className="projects-list">
+          {projects.map((project, index) => (
+            <motion.div
+              key={index}
+              className="project-row"
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+            >
+              <div className="project-row-left">
+                <span className="project-number">{(index + 1).toString().padStart(2, '0')}</span>
+                <h3 className="project-title">{project.title}</h3>
+              </div>
+
+              <div className="project-row-center">
+                <p className="project-category">{project.category}</p>
+                <div className="project-tech">
+                  {project.tech.map((t, i) => (
+                    <span key={i} className="tech-badge">{t}</span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="project-row-right">
+                <a href={project.live} target="_blank" rel="noreferrer" className="project-link-icon">
+                  <ArrowUpRight size={32} />
+                </a>
+              </div>
+
+              {/* Hover Image Reveal */}
+              <div className={`project-hover-image ${hoveredIndex === index ? 'active' : ''}`}>
+                <img src={project.image} alt={project.title} className="hover-project-img" />
+                <div className="project-hover-overlay">
+                  <a href={project.github} target="_blank" rel="noreferrer" className="hover-icon" title="View Source Code"><Code /></a>
+                  <a href={project.live} target="_blank" rel="noreferrer" className="hover-icon" title="View Live Website"><ExternalLink /></a>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="projects-footer text-center" style={{ marginTop: '5rem' }}>
+          <a href="https://github.com/tarun-baranwal" target="_blank" rel="noreferrer" className="btn btn-outline">
+            View More on Github
+          </a>
+        </div>
       </div>
     </section>
   );

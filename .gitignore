@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Temporary scratch files
+generate_resume.py
+raw.html

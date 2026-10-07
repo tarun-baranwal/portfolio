@@ -28,7 +28,7 @@ const ScrollBackground = () => {
         { value: 0.1, duration: 2000 }
       ],
       backgroundColor: () => {
-        const colors = ['#FFDEDE', '#CF0F47', '#FF0B55', '#a8c0ff', '#e0c3fc'];
+        const colors = ['#219ebc', '#8ecae6', '#023047', '#ffb703', '#fb8500'];
         return colors[random(0, colors.length - 1)];
       },
       duration: 5000,
@@ -39,13 +39,13 @@ const ScrollBackground = () => {
       // Calculate how far down the page the user has scrolled
       const scrollHeight = document.body.scrollHeight - window.innerHeight;
       const scrollPosition = window.scrollY;
-      
+
       // Calculate scroll percentage (0 to 1)
       let scrollPercent = scrollPosition / scrollHeight;
-      
+
       // Clamp between 0 and 1 to prevent issues with Apple's "rubber band" overscrolling
       scrollPercent = Math.max(0, Math.min(1, scrollPercent));
-      
+
       // Seek the anime.js timeline to the exact percentage of the scroll
       if (animationRef.current) {
         // Use requestAnimationFrame for buttery smooth 60fps scrubbing
@@ -56,7 +56,7 @@ const ScrollBackground = () => {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    
+
     // Initial call to set starting position
     handleScroll();
 

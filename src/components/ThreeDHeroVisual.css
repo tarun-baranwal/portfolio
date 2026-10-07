@@ -1,0 +1,267 @@
+.three-d-hero-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+}
+
+.three-d-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 3D Glassmorphic Card */
+.hero-3d-card {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  padding: 2.2rem;
+  background: rgba(0, 72, 81, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 28px;
+  border: 1px solid rgba(191, 222, 224, 0.25);
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(44, 145, 153, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  z-index: 2;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.card-shine-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+  transition: background 0.1s ease;
+}
+
+/* HUD Header */
+.card-hud-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.8rem;
+  transform: translateZ(30px);
+}
+
+.hud-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.4rem 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(240, 179, 35, 0.3);
+  border-radius: 50px;
+}
+
+.live-pulse {
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent-primary);
+  animation: pulseGlow 1.8s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.5; }
+}
+
+.hud-status-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--accent-primary);
+}
+
+.hud-icon {
+  color: var(--color-4);
+  opacity: 0.8;
+}
+
+/* Core Display */
+.card-core-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 2rem;
+  transform: translateZ(40px);
+}
+
+.core-avatar-ring {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  margin-bottom: 1.2rem;
+}
+
+.core-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--accent-secondary);
+  box-shadow: 0 0 25px rgba(44, 145, 153, 0.5);
+}
+
+.orbit-ring {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border-radius: 50%;
+  border: 1px stroke transparent;
+  pointer-events: none;
+}
+
+.orbit-1 {
+  border-top: 2px solid var(--accent-primary);
+  border-right: 2px solid transparent;
+  animation: spinOrbit 8s linear infinite;
+}
+
+.orbit-2 {
+  top: -18px;
+  left: -18px;
+  right: -18px;
+  bottom: -18px;
+  border-bottom: 2px solid var(--color-4);
+  border-left: 2px solid transparent;
+  animation: spinOrbit 12s linear infinite reverse;
+}
+
+@keyframes spinOrbit {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.core-name {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 0.3rem;
+  letter-spacing: -0.5px;
+}
+
+.core-subtitle {
+  font-size: 0.9rem;
+  color: var(--color-4);
+  font-weight: 500;
+}
+
+/* Stats Grid inside 3D Card */
+.card-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+  transform: translateZ(35px);
+}
+
+.card-stat-pill {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.8rem 0.5rem;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.card-stat-pill:hover {
+  background: rgba(44, 145, 153, 0.2);
+  border-color: var(--accent-secondary);
+  transform: translateY(-2px);
+}
+
+.stat-value {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+  text-align: center;
+}
+
+/* Floating 3D Tech Badges surrounding the card */
+.floating-tech-container {
+  position: absolute;
+  inset: -25px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.floating-tech-chip {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.5rem 1.1rem;
+  background: rgba(8, 24, 28, 0.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(240, 179, 35, 0.35);
+  border-radius: 50px;
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+}
+
+.chip-1 {
+  top: 2%;
+  left: 2%;
+  border-color: rgba(44, 145, 153, 0.5);
+}
+
+.chip-2 {
+  bottom: 4%;
+  left: 0%;
+  border-color: rgba(240, 179, 35, 0.5);
+}
+
+.chip-3 {
+  top: 10%;
+  right: 2%;
+  border-color: rgba(191, 222, 224, 0.5);
+}
+
+.chip-4 {
+  bottom: 8%;
+  right: 0%;
+  border-color: rgba(44, 145, 153, 0.5);
+}
+
+@media (max-width: 1024px) {
+  .floating-tech-chip {
+    display: none;
+  }
+  .three-d-hero-wrapper {
+    min-height: auto;
+  }
+}

@@ -12,7 +12,7 @@ const Services = () => {
 
   return (
     <section className="section-spacing container" style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-      
+
       <div className="grid-2">
         <div>
           <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 500, lineHeight: 1.2, maxWidth: '400px', marginBottom: '4rem' }}>
@@ -22,7 +22,7 @@ const Services = () => {
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem 2rem' }}>
           {services.map((s, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
